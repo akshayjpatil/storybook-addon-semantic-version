@@ -1,0 +1,46 @@
+{
+  "name": "storybook-addon-semantic-version",
+  "version": "0.0.3",
+  "description": "Storybook addon for deploying sematically versioned components",
+  "author": "akshay patil",
+  "license": "MIT",
+  "main": "dist/src/register.js",
+  "module": "dist/src/register.js",
+  "types": "dist/src/register.d.ts",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "sb:semver": "./bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "@storybook/addons": "^7.6.20",
+    "@storybook/components": "^7.6.20",
+    "@storybook/manager-api": "^7.6.20",
+    "chalk": "^5.4.1",
+    "react": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.18",
+    "@types/react": "^18.0.0",
+    "@types/yargs": "^17.0.33",
+    "ts-node": "^10.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "storybook",
+    "semver",
+    "component",
+    "react",
+    "typescript",
+    "tool",
+    "plugin",
+    "nx",
+    "monorepo"
+  ]
+}
