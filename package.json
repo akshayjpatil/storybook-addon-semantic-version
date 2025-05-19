@@ -1,6 +1,6 @@
 {
   "name": "storybook-addon-semantic-version",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Storybook addon for deploying sematically versioned components",
   "author": "akshay patil",
   "license": "MIT",
