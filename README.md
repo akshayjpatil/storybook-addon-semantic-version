@@ -34,15 +34,7 @@ export default {
 Will find all storybook instances within your NX monorepo and then generate static storybook build folder and put in `dist/storybooks/<lib>/<version>`. The version is based on package.json of the `<lib>`.
 
 ```shell
-npx storybook-addon-semantic-version build-all-storybooks
-```
-
-### 4. Build root composed storybook
-
-Step 3. Builds all the libraries' storybooks. Now you need to build the root storybook which will read the `refs.generated.ts`, load all latest version of each library and add toolbar version dropdown for dynamic switching.
-
-```shell
-nx run storybook-root:build-storybook --output-dir=dist/root/storybook
+npx storybook-addon-semantic-version
 ```
 
 After building everything this is how your dist folder should look like:
@@ -61,7 +53,7 @@ dist/
 To test locally you can just run
 
 ```shell
-npx server dist
+npx serve dist --cors
 ```
 
 You should now be able to view your main storybook at `http://localhost:3000/root/storybook`

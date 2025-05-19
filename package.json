@@ -1,34 +1,47 @@
 {
   "name": "storybook-addon-semantic-version",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Storybook addon for deploying sematically versioned components",
   "author": "akshay patil",
   "license": "MIT",
-  "main": "dist/src/register.js",
-  "module": "dist/src/register.js",
-  "types": "dist/src/register.d.ts",
+  "main": "dist/preset.js",
+  "exports": {
+    "./preset": "./dist/preset.js",
+    "./register": "./dist/register.js"
+  },
   "files": [
     "dist"
   ],
   "bin": {
-    "sb:semver": "./bin/cli.js"
+    "storybook-addon-semantic-version": "./dist/cli/build-storybooks.js"
   },
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc --watch",
-    "prepare": "npm run build"
+    "build": "rollup -c",
+    "storybooks:build": "node ./bin/build-storybooks.js"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@storybook/addons": "^7.6.20",
     "@storybook/components": "^7.6.20",
     "@storybook/manager-api": "^7.6.20",
-    "chalk": "^5.4.1",
-    "react": "^18.0.0"
+    "storybook": "^7.6.20",
+    "@storybook/react": "^7.6.20",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "@storybook/icons": "^1.2.10",
+    "chalk": "^5.4.1"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "^11.1.2",
     "@types/node": "^22.15.18",
     "@types/react": "^18.0.0",
     "@types/yargs": "^17.0.33",
+    "rollup": "^4.0.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
     "ts-node": "^10.0.0",
     "typescript": "^5.0.0"
   },
