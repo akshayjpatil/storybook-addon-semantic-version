@@ -1,4 +1,4 @@
-# Storybook Semantic Version Deploy
+# Storybook Semantic Version Deploy [![NPM version](https://img.shields.io/npm/v/storybook-addon-semantic-version.svg?style=flat)](https://npmjs.com/package/storybook-addon-semantic-version) [![NPM downloads](https://img.shields.io/npm/dm/storybook-addon-semantic-version.svg?style=flat)](https://npmjs.com/package/storybook-addon-semantic-version)
 
 Storybook addon to deploy semantically versioned(Semver) components for each library from your NX monorepo. Read more about semver [here](https://semver.org/).
 
