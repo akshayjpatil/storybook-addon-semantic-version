@@ -15,7 +15,7 @@ const distDir = path.join(root, 'dist');
 const versionDir = path.join(distDir, 'storybooks', version);
 const rootDir = path.join(distDir, 'root');
 const versionsFile = path.join(root, '.storybook', 'versions.json');
-const refsFile = path.join(root, '.storybook', 'refs.generated.js');
+const refsFile = path.join(root, '.storybook', 'refs.generated.ts');
 // Ensure dirs exist
 fs.mkdirSync(versionDir, { recursive: true });
 fs.mkdirSync(rootDir, { recursive: true });
@@ -52,7 +52,7 @@ versions.forEach((v) => {
     disabled: true,
   };
 });
-const refsJS = `module.exports = ${JSON.stringify(refs, null, 2)};\n`;
+const refsJS = `export default ${JSON.stringify(refs, null, 2)};\n`;
 fs.writeFileSync(refsFile, refsJS);
 
 // 4. Build root storybook
