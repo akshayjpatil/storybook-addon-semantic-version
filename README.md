@@ -55,8 +55,10 @@ dist/
 To test locally you can just run
 
 ```shell
-npx serve dist --cors
+http-server dist --cors
 ```
+
+_Note: If you don't have http-server already installed, do so by `npm -g i http-server`._
 
 You should now be able to view your main storybook at `http://localhost:3000/root/storybook`
 

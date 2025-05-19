@@ -1,11 +1,11 @@
 {
   "type": "module",
   "name": "storybook-addon-semantic-version",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Storybook addon for deploying sematically versioned components",
   "author": "akshay patil",
   "license": "MIT",
-  "main": "dist/preset.js",
+  "main": "dist/register.js",
   "exports": {
     "./preset": "./dist/preset.js",
     "./register": "./dist/register.js"
