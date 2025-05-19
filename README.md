@@ -2,6 +2,8 @@
 
 Storybook addon to deploy semantically versioned(Semver) components for each library from your NX monorepo. Read more about semver [here](https://semver.org/).
 
+![screenshot](./assets/screenshot.png)
+
 ## Getting started
 
 ### 1. Install the package in your NX monorepo root
@@ -59,6 +61,8 @@ npx serve dist --cors
 You should now be able to view your main storybook at `http://localhost:3000/root/storybook`
 
 _Note: You can deploy your entire dist folder to a storage bucket online and make it available through a DNS_
+
+_WARN: If you don't store the dist folder somewhere and you accidentally delete it, you'll loose all your previously built versions. And you'll have only the latest versions. You'll then need to clear the refs.generated.ts and versions.json from your .storybook folder becasue those will become invalid at this point._
 
 ## Contributing:
 
