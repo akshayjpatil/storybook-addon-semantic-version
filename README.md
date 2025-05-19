@@ -1,6 +1,6 @@
 # Storybook Semantic Version Deploy [![NPM version](https://img.shields.io/npm/v/storybook-addon-semantic-version.svg?style=flat)](https://npmjs.com/package/storybook-addon-semantic-version) [![NPM downloads](https://img.shields.io/npm/dm/storybook-addon-semantic-version.svg?style=flat)](https://npmjs.com/package/storybook-addon-semantic-version)
 
-Storybook addon to deploy semantically versioned(Semver) components for each library from your NX monorepo. Read more about semver [here](https://semver.org/).
+Storybook addon to deploy semantically versioned(Semver) components.Note that this plugin currently doesn't support hot reloading and you'll need to build a static storybooks to properly view the versioned components.
 
 ![screenshot](./assets/screenshot.png)
 
@@ -33,7 +33,7 @@ export default {
 
 ### 3. Generate refs + build Storybooks
 
-Will find all storybook instances within your NX monorepo and then generate static storybook build folder and put in `dist/storybooks/<lib>/<version>`. The version is based on package.json of the `<lib>`.
+Will find all storybook instances within your NX monorepo and then generate static storybook build folder and put in `dist/storybooks/<lib>/<version>`. The version is based on package.json of the `<lib>`. Make sure to run it from the root folder of your project.
 
 ```shell
 npx storybook-addon-semantic-version
