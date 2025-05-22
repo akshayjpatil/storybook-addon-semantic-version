@@ -1,16 +1,14 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Icons, IconButton, WithTooltip, TooltipLinkList } from '@storybook/components';
-import { AVAILABLE_VERSIONS_PARAM_KEY, SELECTED_VERSION_PARAM_KEY, TOOL_ID, VERSIONS_URL } from '../constants';
-import { useGlobals } from '@storybook/manager-api';
+import { SELECTED_VERSION_PARAM_KEY, VERSIONS_URL } from '../constants';
 
 
 
 export const VersionSwitcher = () => {
-  const [globals, updateGlobals] = useGlobals();
-  const selectedVersion = globals[SELECTED_VERSION_PARAM_KEY];
-  const setSelectedVersion = (version: string) => updateGlobals({ [SELECTED_VERSION_PARAM_KEY]: version })
-  const versions = globals[AVAILABLE_VERSIONS_PARAM_KEY];
-  const setVersions = (versions: Array<string>) => updateGlobals({ [AVAILABLE_VERSIONS_PARAM_KEY]: versions })
+  const [versions, setVersions] = useState<string[]>([]);
+  const [selected, setSelected] = useState<string>(() => {
+    return localStorage.getItem(SELECTED_VERSION_PARAM_KEY) || '';
+  });
 
   const getCurrentStoryId = () => {
     const url = new URL(window.location.href);
@@ -27,14 +25,16 @@ export const VersionSwitcher = () => {
   }, []);
 
   useEffect(() => {
-    if (!selectedVersion && versions.length > 0) {
+    if (!selected && versions.length > 0) {
       const latest = versions[versions.length - 1];
-      setSelectedVersion(latest);
+      setSelected(latest);
+      localStorage.setItem(SELECTED_VERSION_PARAM_KEY, latest)
     }
   }, [versions])
 
   const handleSelect = (version: string) => {
-    setSelectedVersion(version);
+    setSelected(version);
+    localStorage.setItem(SELECTED_VERSION_PARAM_KEY, version);
     const currentStoryId = getCurrentStoryId();
     const targetUrl = `/storybooks/${version}/?path=${currentStoryId}`;
     window.location.href = targetUrl;
@@ -42,11 +42,12 @@ export const VersionSwitcher = () => {
 
   const buildItems = useCallback(() => {
     const latest = versions[versions.length - 1];
-    return versions.map((v: string) => ({
+    console.log(versions);
+    return versions.map((v) => ({
       id: v,
       title: `v${v}`,
       onClick: () => handleSelect(v),
-      active: selectedVersion === v,
+      active: selected === v,
       right: v === latest ? (
         <div
           style={{
@@ -66,19 +67,13 @@ export const VersionSwitcher = () => {
 
   return (
     <WithTooltip
-      key={TOOL_ID}
       placement="top"
       trigger="click"
       tooltip={<TooltipLinkList links={buildItems()} />}
     >
-      <IconButton
-        title={`Version: v${selectedVersion || 'latest'}`}
-        placeholder={''}
-        onPointerEnterCapture={() => { }}
-        onPointerLeaveCapture={() => { }}
-      >
+      <IconButton title={`Version: v${selected || 'latest'}`} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
         <Icons icon="arrowdown" />
-        {selectedVersion}
+        {selected}
       </IconButton>
     </WithTooltip>
   );
