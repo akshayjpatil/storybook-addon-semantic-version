@@ -1,14 +1,52 @@
 {
-  "type": "module",
   "name": "storybook-addon-semantic-version",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Storybook addon for deploying sematically versioned components",
   "author": "akshay patil",
   "license": "MIT",
+  "homepage": "https://github.com/akshayjpatil/storybook-addon-semantic-version?tab=readme-ov-file#storybook-semantic-version-deploy--",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akshayjpatil/storybook-addon-semantic-version"
+  },
+  "storybook": {
+    "displayName": "Storybook Semantic Versioning Addon",
+    "supprotedFrameworks": [
+      "react",
+      "vue",
+      "next",
+      "angular",
+      "web-components",
+      "html",
+      "ember",
+      "svelte",
+      "preact"
+    ],
+    "icon": "https://github.com/akshayjpatil/storybook-addon-semantic-version/blob/main/assets/logo.png"
+  },
+  "keywords": [
+    "storybook-addons",
+    "semver",
+    "component",
+    "react",
+    "typescript",
+    "tool",
+    "plugin",
+    "nx",
+    "monorepo"
+  ],
+  "type": "module",
   "main": "dist/register.js",
   "exports": {
-    "./preset": "./dist/preset.js",
-    "./register": "./dist/register.js"
+    "./preset": {
+      "require": "./dist/preset.js",
+      "types": "./dist/preset.d.ts"
+    },
+    "./register": {
+      "require": "./dist/register.js",
+      "types": "./dist/register.d.ts"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
     "dist"
@@ -45,16 +83,5 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "ts-node": "^10.0.0",
     "typescript": "^5.0.0"
-  },
-  "keywords": [
-    "storybook",
-    "semver",
-    "component",
-    "react",
-    "typescript",
-    "tool",
-    "plugin",
-    "nx",
-    "monorepo"
-  ]
+  }
 }

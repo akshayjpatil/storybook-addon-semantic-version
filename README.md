@@ -2,7 +2,7 @@
 
 Storybook addon to deploy semantically versioned(Semver) components.Note that this plugin currently doesn't support hot reloading and you'll need to build a static storybooks to properly view the versioned components.
 
-![screenshot](./assets/screenshot.png)
+![screenshot](https://github.com/akshayjpatil/storybook-addon-semantic-version/blob/main/assets/screenshot.png)
 
 ## Getting started
 
