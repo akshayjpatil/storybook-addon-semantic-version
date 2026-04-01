@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Icons, IconButton, WithTooltip, TooltipLinkList } from '@storybook/components';
+import { IconButton, WithTooltip, TooltipLinkList } from '@storybook/components';
+import { ChevronDownIcon } from '@storybook/icons';
 import { SELECTED_VERSION_PARAM_KEY, VERSIONS_URL } from '../constants';
 
 
@@ -70,8 +71,8 @@ export const VersionSwitcher = () => {
       trigger="click"
       tooltip={<TooltipLinkList links={buildItems()} />}
     >
-      <IconButton title={`Version: v${selected || 'latest'}`} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
-        <Icons icon="arrowdown" />
+      <IconButton title={`Version: v${selected || 'latest'}`}>
+        <ChevronDownIcon />
         {selected}
       </IconButton>
     </WithTooltip>

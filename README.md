@@ -4,6 +4,13 @@ Storybook addon to deploy semantically versioned(Semver) components.Note that th
 
 ![screenshot](https://github.com/akshayjpatil/storybook-addon-semantic-version/blob/main/assets/screenshot.png)
 
+## Compatibility
+
+| Addon version | Storybook version | Node.js |
+|---------------|-------------------|---------|
+| `1.x`         | `^7.6.20`         | ≥16     |
+| `2.x`         | `^8.0.0`          | ≥18     |
+
 ## Getting started
 
 ### 1. Install the package in your NX monorepo root

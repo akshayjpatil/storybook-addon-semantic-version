@@ -23,5 +23,5 @@ export default {
     json(),
     typescript({ tsconfig: './tsconfig.json' }),
   ],
-  external: ['react', 'react-dom']
+  external: ['react', 'react-dom', '@storybook/manager-api', '@storybook/components', '@storybook/icons', 'storybook']
 };
