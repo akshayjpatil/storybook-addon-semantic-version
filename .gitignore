@@ -6,3 +6,5 @@ preset.js.map
 example/react/dist
 .claude/settings.local.json
 .playwright-mcp
+playwright-report
+test-results
