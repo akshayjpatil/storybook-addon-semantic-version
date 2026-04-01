@@ -2,6 +2,7 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
+import semver from 'semver';
 
 const root = process.cwd();
 const pkg = JSON.parse(
@@ -32,7 +33,7 @@ if (fs.existsSync(versionsFile)) {
 }
 if (!versions.includes(version)) {
   versions.push(version);
-  versions.sort();
+  versions.sort(semver.rcompare);
   fs.writeFileSync(versionsFile, JSON.stringify(versions, null, 2));
   fs.writeFileSync(
     path.join(rootDir, 'versions.json'),

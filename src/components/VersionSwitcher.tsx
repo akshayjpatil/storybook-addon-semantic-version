@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { IconButton, WithTooltip, TooltipLinkList } from '@storybook/components';
 import { ChevronDownIcon } from '@storybook/icons';
+import semver from 'semver';
 import { SELECTED_VERSION_PARAM_KEY, VERSIONS_URL } from '../constants';
 
 
@@ -20,14 +21,14 @@ export const VersionSwitcher = () => {
     fetch(VERSIONS_URL)
       .then(res => res.json())
       .then((data: string[]) => {
-        setVersions(data.sort());
+        setVersions(data.sort(semver.rcompare));
       })
       .catch(() => console.warn('Could not load versions.json'));
   }, []);
 
   useEffect(() => {
     if (!selected && versions.length > 0) {
-      const latest = versions[versions.length - 1];
+      const latest = versions[0];
       setSelected(latest);
       localStorage.setItem(SELECTED_VERSION_PARAM_KEY, latest)
     }
@@ -42,7 +43,7 @@ export const VersionSwitcher = () => {
   };
 
   const buildItems = useCallback(() => {
-    const latest = versions[versions.length - 1];
+    const latest = versions[0];
     return versions.map((v) => ({
       id: v,
       title: `v${v}`,
@@ -65,15 +66,36 @@ export const VersionSwitcher = () => {
     }))
   }, [versions, selected])
 
+  const latestVersion = versions.length > 0 ? versions[0] : '';
+  const isLatestSelected = selected === latestVersion;
+
   return (
     <WithTooltip
       placement="top"
       trigger="click"
-      tooltip={<TooltipLinkList links={buildItems()} />}
+      tooltip={
+        <div style={{ maxHeight: '250px', overflowY: 'auto' }}>
+          <TooltipLinkList links={buildItems()} />
+        </div>
+      }
     >
       <IconButton title={`Version: v${selected || 'latest'}`}>
         <ChevronDownIcon />
         {selected}
+        {isLatestSelected && (
+          <span
+            style={{
+              fontSize: '10px',
+              background: '#0070f3',
+              color: '#fff',
+              borderRadius: '4px',
+              padding: '1px 5px',
+              marginLeft: '4px'
+            }}
+          >
+            latest
+          </span>
+        )}
       </IconButton>
     </WithTooltip>
   );
