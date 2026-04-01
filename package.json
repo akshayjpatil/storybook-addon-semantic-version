@@ -11,7 +11,7 @@
   },
   "storybook": {
     "displayName": "Storybook Semantic Versioning Addon",
-    "supprotedFrameworks": [
+    "supportedFrameworks": [
       "react",
       "vue",
       "next",
@@ -39,17 +39,19 @@
   "main": "dist/register.js",
   "exports": {
     "./preset": {
-      "require": "./dist/preset.js",
+      "require": "./preset.cjs",
+      "import": "./dist/preset.js",
       "types": "./dist/preset.d.ts"
     },
     "./register": {
-      "require": "./dist/register.js",
+      "import": "./dist/register.js",
       "types": "./dist/register.d.ts"
     },
     "./package.json": "./package.json"
   },
   "files": [
-    "dist"
+    "dist",
+    "preset.cjs"
   ],
   "bin": {
     "storybook-addon-semantic-version": "./dist/cli/build-storybooks.js"

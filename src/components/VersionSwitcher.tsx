@@ -42,7 +42,6 @@ export const VersionSwitcher = () => {
 
   const buildItems = useCallback(() => {
     const latest = versions[versions.length - 1];
-    console.log(versions);
     return versions.map((v) => ({
       id: v,
       title: `v${v}`,
@@ -63,7 +62,7 @@ export const VersionSwitcher = () => {
         </div>
       ) : undefined
     }))
-  }, [versions])
+  }, [versions, selected])
 
   return (
     <WithTooltip

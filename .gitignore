@@ -1,5 +1,8 @@
 node_modules
 dist
+preset.js
+preset.js.map
 .nx
 example/react/dist
 .claude/settings.local.json
+.playwright-mcp
