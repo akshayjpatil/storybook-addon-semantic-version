@@ -2,3 +2,4 @@ node_modules
 dist
 .nx
 example/react/dist
+.claude/settings.local.json
