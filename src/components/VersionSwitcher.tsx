@@ -43,6 +43,8 @@ export const VersionSwitcher = () => {
   };
 
   const buildItems = useCallback(() => {
+    if (versions.length === 0) return [];
+
     const latest = versions[0];
     return versions.map((v) => ({
       id: v,
@@ -68,6 +70,11 @@ export const VersionSwitcher = () => {
 
   const latestVersion = versions.length > 0 ? versions[0] : '';
   const isLatestSelected = selected === latestVersion;
+
+  // Don't render if no versions are available (e.g., in dev mode)
+  if (versions.length === 0) {
+    return null;
+  }
 
   return (
     <WithTooltip

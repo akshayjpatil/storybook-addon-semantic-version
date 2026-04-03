@@ -1,9 +1,10 @@
 import type { StorybookConfig } from '@storybook/react-vite';
-import refs from './refs.generated';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  refs,
+  // refs are only included for production builds with versioned storybooks
+  // In dev mode, refs are empty to avoid loading non-existent built storybooks
+  refs: {},
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
