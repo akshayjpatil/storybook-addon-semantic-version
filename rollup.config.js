@@ -21,7 +21,12 @@ export default {
     nodeResolve(),
     commonjs(),
     json(),
-    typescript({ tsconfig: './tsconfig.json' }),
+    typescript({
+      tsconfig: './tsconfig.json',
+      compilerOptions: {
+        jsx: 'react'
+      }
+    }),
   ],
   external: ['react', 'react-dom', '@storybook/manager-api', '@storybook/components', '@storybook/icons', 'storybook']
 };
