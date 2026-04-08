@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { IconButton, WithTooltip, TooltipLinkList } from '@storybook/components';
+import { IconButton, WithTooltip, TooltipLinkList } from 'storybook/internal/components';
 import { ChevronDownIcon } from '@storybook/icons';
 import semver from 'semver';
 import { SELECTED_VERSION_PARAM_KEY, VERSIONS_URL } from '../constants';
@@ -34,7 +34,34 @@ export const VersionSwitcher = () => {
     }
   }, [versions])
 
-  const handleSelect = (version: string) => {
+  const hasVersionBuild = async (version: string) => {
+    const probeUrl = `/storybooks/${version}/iframe.html`;
+
+    try {
+      const headResponse = await fetch(probeUrl, { method: 'HEAD' });
+      if (headResponse.ok) return true;
+
+      // Some static hosts disable HEAD; fallback to GET probe.
+      if (headResponse.status === 405) {
+        const getResponse = await fetch(probeUrl, { method: 'GET' });
+        return getResponse.ok;
+      }
+
+      return false;
+    } catch {
+      return false;
+    }
+  };
+
+  const handleSelect = async (version: string) => {
+    const versionExists = await hasVersionBuild(version);
+    if (!versionExists) {
+      console.warn(
+        `Version build not found for v${version}. Build and serve /storybooks/<version> before switching.`
+      );
+      return;
+    }
+
     setSelected(version);
     localStorage.setItem(SELECTED_VERSION_PARAM_KEY, version);
     const currentStoryId = getCurrentStoryId();
