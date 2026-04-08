@@ -6,9 +6,6 @@ const config: StorybookConfig = {
   // In dev mode, refs are empty to avoid loading non-existent built storybooks
   refs: {},
   addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
     'storybook-addon-semantic-version',
   ],
   framework: {
