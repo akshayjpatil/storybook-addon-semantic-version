@@ -10,6 +10,10 @@ const sharedDir = path.join(distDir, 'shared');
 const SHARED_DIRS = ['sb-manager', 'sb-addons', 'sb-preview', 'sb-common-assets'] as const;
 const SHARED_FILES = ['favicon.svg', 'favicon.ico'] as const;
 
+function getNpmCommand(platform: NodeJS.Platform = process.platform): string {
+  return platform === 'win32' ? 'npm.cmd' : 'npm';
+}
+
 function copyDirIfNotExists(src: string, dest: string): void {
   fs.mkdirSync(dest, { recursive: true });
   for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
@@ -74,9 +78,10 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   fs.mkdirSync(versionDir, { recursive: true });
   fs.mkdirSync(rootDir, { recursive: true });
   fs.mkdirSync(sharedDir, { recursive: true });
+  const npmCommand = getNpmCommand();
   // 1. Build the current version
   console.log(`Building version ${version}...`);
-  execFileSync('npm', ['run', 'build-storybook', '--', '-o', versionDir], {
+  execFileSync(npmCommand, ['run', 'build-storybook', '--', '-o', versionDir], {
     stdio: 'inherit',
   });
   deduplicateAssets(versionDir);
@@ -114,7 +119,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   // 4. Build root storybook
   console.log('Building root storybook...');
   execFileSync(
-    'npm',
+    npmCommand,
     ['run', 'build-storybook', '-c', '.storybook', '--', '-o', path.join(rootDir, 'storybook')],
     {
       stdio: 'inherit',
@@ -124,4 +129,4 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   console.log(':white_check_mark: All versions built.');
 }
 
-export { copyDirIfNotExists, deduplicateAssets };
+export { copyDirIfNotExists, deduplicateAssets, getNpmCommand };

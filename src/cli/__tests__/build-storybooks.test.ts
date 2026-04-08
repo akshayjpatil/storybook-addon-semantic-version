@@ -3,7 +3,18 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import semver from 'semver';
-import { copyDirIfNotExists, deduplicateAssets } from '../build-storybooks';
+import { copyDirIfNotExists, deduplicateAssets, getNpmCommand } from '../build-storybooks';
+
+describe('getNpmCommand', () => {
+  it('should use npm.cmd on Windows', () => {
+    expect(getNpmCommand('win32')).toBe('npm.cmd');
+  });
+
+  it('should use npm on non-Windows platforms', () => {
+    expect(getNpmCommand('linux')).toBe('npm');
+    expect(getNpmCommand('darwin')).toBe('npm');
+  });
+});
 
 describe('build-storybooks version sorting', () => {
   it('should sort versions newest-first with semver.rcompare', () => {
