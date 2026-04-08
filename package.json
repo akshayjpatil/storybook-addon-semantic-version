@@ -42,13 +42,13 @@
   "main": "dist/register.js",
   "exports": {
     "./preset": {
+      "types": "./dist/preset.d.ts",
       "require": "./preset.cjs",
-      "import": "./dist/preset.js",
-      "types": "./dist/preset.d.ts"
+      "import": "./dist/preset.js"
     },
     "./register": {
-      "import": "./dist/register.js",
-      "types": "./dist/register.d.ts"
+      "types": "./dist/register.d.ts",
+      "import": "./dist/register.js"
     },
     "./package.json": "./package.json"
   },
