@@ -20,6 +20,7 @@ Storybook addon for managing semantically versioned component libraries. Deploy 
 |---|---|---|
 | `1.x` | `^7.6.20` | ≥16 |
 | `2.x` | `>=8 <10` | ≥18 |
+| `3.x` | `>=8 <10` | ≥18 |
 
 > **Note:** This addon doesn't support hot reloading. Static builds required.
 
@@ -46,7 +47,7 @@ import { refs } from './refs.generated';
 
 export default {
   refs,
-  addons: ['@storybook/addon-essentials', 'storybook-addon-semantic-version'],
+  addons: ['storybook-addon-semantic-version'],
 };
 ```
 
@@ -75,9 +76,9 @@ dist/
 │   ├── storybook/           # Root Storybook build (with version switcher)
 │   └── versions.json        # List of all built versions
 └── storybooks/
-    ├── v1.0.0/              # Version 1 build
-    ├── v1.1.0/              # Version 2 build
-    └── v2.0.0/              # Version 3 build
+    ├── 1.0.0/               # Version 1 build
+    ├── 1.1.0/               # Version 2 build
+    └── 2.0.0/               # Version 3 build
 ```
 
 ### Step 4: Serve locally
