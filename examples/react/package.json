@@ -14,7 +14,7 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "vite": "^5.4.21"
+    "vite": "^6.4.2"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.6.18",
