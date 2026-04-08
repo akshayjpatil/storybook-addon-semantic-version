@@ -43,7 +43,7 @@ function deduplicateAssets(outputDir: string, targetSharedDir: string = sharedDi
   }
   // Patch HTML entry points to use /shared/ absolute paths
   const sharedDirNames = SHARED_DIRS.join('|');
-  const sharedFileNames = SHARED_FILES.map(f => f.replace(/\./g, '\\.')).join('|');
+  const sharedFileNames = SHARED_FILES.map(f => f.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
   const DIR_PATTERN = new RegExp(`(src|href)="(?:\\./)?((${sharedDirNames})/)`, 'g');
   const FILE_PATTERN = new RegExp(`(href)="(?:\\./)?((${sharedFileNames}))"`, 'g');
   for (const htmlFile of ['index.html', 'iframe.html']) {
