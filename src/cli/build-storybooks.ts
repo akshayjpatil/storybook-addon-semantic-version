@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import semver from 'semver';
@@ -76,7 +76,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   fs.mkdirSync(sharedDir, { recursive: true });
   // 1. Build the current version
   console.log(`Building version ${version}...`);
-  execSync(`npm run build-storybook -- -o ${versionDir}`, {
+  execFileSync('npm', ['run', 'build-storybook', '--', '-o', versionDir], {
     stdio: 'inherit',
   });
   deduplicateAssets(versionDir);
@@ -113,11 +113,9 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 
   // 4. Build root storybook
   console.log('Building root storybook...');
-  execSync(
-    `npm run build-storybook -c .storybook -- -o ${path.join(
-      rootDir,
-      'storybook'
-    )}`,
+  execFileSync(
+    'npm',
+    ['run', 'build-storybook', '-c', '.storybook', '--', '-o', path.join(rootDir, 'storybook')],
     {
       stdio: 'inherit',
     }
