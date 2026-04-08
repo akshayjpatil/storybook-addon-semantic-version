@@ -19,7 +19,7 @@ A Storybook addon for managing and deploying semantically versioned component li
 | Addon version | Storybook version | Node.js |
 |---|---|---|
 | `1.x` | `^7.6.20` | ≥16 |
-| `2.x` | `^8.0.0` | ≥18 |
+| `2.x` | `>=8 <10` | ≥18 |
 
 > **Note:** This addon doesn't support Storybook's hot reloading. Static builds are required for proper version viewing.
 

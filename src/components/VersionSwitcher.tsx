@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { IconButton, WithTooltip, TooltipLinkList } from '@storybook/components';
+import { IconButton, WithTooltip, TooltipLinkList } from 'storybook/internal/components';
 import { ChevronDownIcon } from '@storybook/icons';
 import semver from 'semver';
 import { SELECTED_VERSION_PARAM_KEY, VERSIONS_URL } from '../constants';
