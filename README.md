@@ -21,6 +21,7 @@ Storybook addon for managing semantically versioned component libraries. Deploy 
 | `1.x` | `^7.6.20` | ≥16 |
 | `2.x` | `>=8 <10` | ≥18 |
 | `3.x` | `>=8 <10` | ≥18 |
+| `4.x` | `>=8 <11` | ≥18 |
 
 > **Note:** This addon doesn't support hot reloading. Static builds required.
 
