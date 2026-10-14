@@ -21,9 +21,11 @@ Storybook addon for managing semantically versioned component libraries. Deploy 
 | `1.x` | `^7.6.20` | ≥16 |
 | `2.x` | `>=8 <10` | ≥18 |
 | `3.x` | `>=8 <10` | ≥18 |
-| `4.x` | `>=8 <11` | ≥18 |
+| `4.x` | `>=8 <12` (including Storybook 11) | ≥22.12 for Storybook 11 |
 
-> **Note:** This addon doesn't support hot reloading. Static builds required.
+> **Note:** Storybook 11 requires Node.js 22.12 or later. This addon doesn't support hot reloading; static builds are required.
+
+The addon only registers a manager toolbar tool. It does not install preview annotations, so Storybook 11's CSF Next `definePreviewAddon` migration does not apply.
 
 ## Getting Started
 
