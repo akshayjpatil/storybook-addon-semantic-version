@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 20
+    groups:
+      security-patches:
+        applies-to: security-updates
+        patterns:
+          - "*"
+    labels:
+      - dependencies
+  - package-ecosystem: npm
+    directory: /examples/react
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 20
+    groups:
+      security-patches:
+        applies-to: security-updates
+        patterns:
+          - "*"
+    labels:
+      - dependencies
