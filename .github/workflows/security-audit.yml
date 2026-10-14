@@ -1,0 +1,32 @@
+name: Dependency security audit
+
+on:
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '19 8 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: npm audit (${{ matrix.directory }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        directory: ['.', 'examples/react']
+    defaults:
+      run:
+        working-directory: ${{ matrix.directory }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Audit dependency tree
+        run: npm audit --audit-level=high
