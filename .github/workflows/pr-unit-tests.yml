@@ -17,11 +17,20 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22.12.0'
           cache: 'npm'
 
       - name: Install deps
         run: npm ci
 
+      - name: Build addon
+        run: npm run build
+
       - name: Run unit tests
         run: npm test
+
+      - name: Validate Storybook 11 compatibility
+        run: |
+          npm install --no-save --legacy-peer-deps storybook@next
+          npm run build
+          npm test
