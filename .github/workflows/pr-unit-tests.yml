@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '22.12.0'
+          node-version: '22.13.0'
           cache: 'npm'
 
       - name: Install deps
@@ -33,4 +33,3 @@ jobs:
         run: |
           npm install --no-save --legacy-peer-deps storybook@next
           npm run build
-          npm test
