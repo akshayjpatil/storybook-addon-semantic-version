@@ -92,7 +92,7 @@
     "@playwright/test": "^1.59.1",
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
     "storybook": "^10.0.0",
     "@testing-library/jest-dom": "^6.9.1",
